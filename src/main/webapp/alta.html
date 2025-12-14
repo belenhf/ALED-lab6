@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Gestión Hospitalaria</title>
+	<link rel="stylesheet"      
+	      href="estilos.css"
+	      type="text/css" >
+	<script>
+		function validar() {
+			var numero, letra, letras, formato;
+			letras = 'TRWAGMYFPDXBNJZSQVHLCKET';
+			formato = /^\d{8}[a-zA-Z]$/;
+			dni = document.forms["formulario"]["dni"].value;
+			if (formato.test(dni)) {
+				numero = dni.substr(0, dni.length - 1);
+				letra = dni.substr(dni.length - 1, 1);
+				numero = numero % 23;
+				letras = letras.substring(numero, numero + 1);
+				if (letras != letra) {
+					alert("Letra errónea");
+					return false;
+				} else
+					return true;
+			} else {
+				alert("Formato erróneo");
+				return false;
+			}
+		}
+	</script>
+</head>
+
+<body>
+	<header>
+		<table>
+			<tr>
+				<td><img src="logo.png"></td>
+				<td><h1>Gestión hospitalaria</h1></td>
+			</tr>
+		</table>
+	</header>
+
+	<nav>
+	<table>
+		<tr>
+			<td><a href="index.html">Inicio</a></td>
+			<td><a href="alta.html">Alta</a></td>
+			<td><a href="baja.html">Baja</a></td>
+			<td><a href="consulta.html">Consulta</a></td>
+		</tr>
+	</table>
+	</nav>
+	
+	<section>
+		<h1>Alta</h1>
+		<form name="formulario" method="post" action="alta.html"
+			onsubmit="validar()">
+			<table>
+				<tr>
+					<td><label for="nombre"> Nombre:</label></td>
+					<td><input type="text" name="nombre"></td>
+				</tr>
+				<tr>
+					<td><label for="apellidos"> Apellidos:</label></td>
+					<td><input type="text" name="apellidos"></td>
+				</tr>
+				<tr>
+					<td><label for="dni"> DNI:</label></td>
+					<td><input type="text" name="dni"></td>
+				</tr>
+				<tr>
+					<td><input type="submit" value="submit"></td>
+				</tr>
+
+			</table>
+
+		</form>
+
+	</section>
+	
+	<footer>
+				<p>Belen Herrero Ferrer</p>
+				<p>Enviar email a:<a href="mailto:b.hferrer@alumnos.upm.es"> b.hferrer@alumnos.upm.es</a></p>
+	</footer>
+	
+</body>
+
+</html>
